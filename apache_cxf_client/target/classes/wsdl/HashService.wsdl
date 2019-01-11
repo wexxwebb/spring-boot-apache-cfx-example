@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://ws.prototype.kretov.pro/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="HashServiceService" targetNamespace="http://ws.prototype.kretov.pro/">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://ws.prototype.kretov.pro/" elementFormDefault="unqualified" targetNamespace="http://ws.prototype.kretov.pro/" version="1.0">
+
+  <xs:element name="getHash" type="tns:getHash"/>
+
+  <xs:element name="getHashResponse" type="tns:getHashResponse"/>
+
+  <xs:element name="inputType" type="tns:inputType"/>
+
+  <xs:complexType name="getHash">
+    <xs:sequence>
+      <xs:element name="arg0" type="tns:inputType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="inputType">
+    <xs:sequence>
+      <xs:element name="string" type="xs:string"/>
+      <xs:element name="num" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getHashResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="getHash">
+    <wsdl:part element="tns:getHash" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getHashResponse">
+    <wsdl:part element="tns:getHashResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="HashService">
+    <wsdl:operation name="getHash">
+      <wsdl:input message="tns:getHash" name="getHash">
+    </wsdl:input>
+      <wsdl:output message="tns:getHashResponse" name="getHashResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="HashServiceServiceSoapBinding" type="tns:HashService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getHash">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getHash">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getHashResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="HashServiceService">
+    <wsdl:port binding="tns:HashServiceServiceSoapBinding" name="HashServicePort">
+      <soap:address location="http://localhost:8080/services/HashService"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
